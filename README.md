@@ -1,9 +1,3 @@
-# Visa Fraud Detection — Reference Implementation
-
-Concise, production-oriented README. Covers business goals, architecture, components, installation, quick start, and acceptance criteria.
-
-## Project Summary
-
 This repo provides a reference pipeline for transaction fraud detection: synthetic data generation, feature engineering, XGBoost/LightGBM training, ensemble blending, cost-driven thresholding, SHAP-based explainability (optional), and production monitoring (PSI, prediction logs).
 
 ## Business Objectives
@@ -38,16 +32,6 @@ pip install numpy pandas scikit-learn xgboost lightgbm matplotlib seaborn
 pip install shap
 ```
 
-## Quick Start (demo)
-
-Run the end-to-end demo (generates data, trains, evaluates, saves a report):
-
-```bash
-python -c "from visa_fraud_main import run_full_pipeline; run_full_pipeline()"
-```
-
-For faster runs, reduce `n_transactions` in `run_full_pipeline()`.
-
 ## CLI / API Usage
 
 - Real-time scoring: after training, call `FraudEnsemble.score_transaction(X_single)` to get `{'fraud_score','decision','reason','risk_band'}`.
@@ -62,9 +46,6 @@ For faster runs, reduce `n_transactions` in `run_full_pipeline()`.
 
 - Example targets: ROC-AUC ≥ 0.90, Recall ≥ 0.80, Precision ≥ 0.40, and lower total business cost vs baseline. Adjust targets per business needs.
 
-## Production Considerations
 
-- Replace synthetic data with streaming/warehouse sources (Kafka/Hive/Feature Store).
-- Deploy model as low-latency service (model server / FastAPI), persist predictions and explanations, and integrate monitoring into observability stack.
 
 
